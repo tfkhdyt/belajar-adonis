@@ -5,14 +5,10 @@
  * file.
  */
 
-import '@japa/runner'
+import '@japa/runner';
 
 declare module '@japa/runner' {
-  interface TestContext {
-    // Extend context
-  }
+	type TestContext = {};
 
-  interface Test<TestData> {
-    // Extend test
-  }
+	type Test<_TestData> = {};
 }
