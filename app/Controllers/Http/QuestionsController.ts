@@ -1,12 +1,18 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
+import { inject } from '@adonisjs/fold';
 
+import QuestionsService from 'App/Services/QuestionsService';
+
+@inject()
 export default class QuestionsController {
+	constructor(private questionsService: QuestionsService) {}
+
 	public async index({}: HttpContextContract) {
 		return 'listing questions';
 	}
 
 	public async store({}: HttpContextContract) {
-		return 'creating a question';
+		return this.questionsService.createQuestion('Gak tau');
 	}
 
 	public async show({ params }: HttpContextContract) {

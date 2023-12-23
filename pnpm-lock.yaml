@@ -8,6 +8,9 @@ dependencies:
   '@adonisjs/core':
     specifier: ^5.8.0
     version: 5.9.0
+  '@adonisjs/fold':
+    specifier: ^8.2.0
+    version: 8.2.0
   '@adonisjs/repl':
     specifier: ^3.1.0
     version: 3.1.11(@adonisjs/core@5.9.0)
