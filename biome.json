@@ -11,15 +11,10 @@
 				"noUnusedImports": "warn"
 			},
 			"correctness": {
-				"noUnusedVariables": "warn"
-			},
-			"suspicious": {
-				"noConsoleLog": "warn"
+				"noUnusedVariables": "warn",
+				"noEmptyPattern": "off"
 			}
 		}
-	},
-	"formatter": {
-		"formatWithErrors": true
 	},
 	"javascript": {
 		"formatter": {

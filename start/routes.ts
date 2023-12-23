@@ -21,5 +21,9 @@
 import Route from '@ioc:Adonis/Core/Route';
 
 Route.get('/', async () => {
-	return { hello: 'world' };
+	return 'Hello world';
 });
+
+Route.resource('questions', 'QuestionsController').apiOnly();
+
+Route.shallowResource('questions.answers', 'AnswersController').apiOnly();
