@@ -28,6 +28,7 @@ Route.group(() => {
 	Route.post('/register', 'AuthController.register');
 	Route.post('/login', 'AuthController.login');
 	Route.get('/inspect', 'AuthController.inspect');
+	Route.delete('/logout', 'AuthController.logout');
 }).prefix('/auth');
 
 Route.resource('questions', 'QuestionsController').apiOnly();

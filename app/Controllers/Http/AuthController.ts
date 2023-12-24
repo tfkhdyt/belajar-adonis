@@ -36,4 +36,13 @@ export default class AuthController {
 
 		return user;
 	}
+
+	public async logout({ auth }: HttpContextContract) {
+		await auth.use('api').authenticate();
+		await auth.use('api').revoke();
+
+		return {
+			message: 'Token has been revoked',
+		};
+	}
 }
