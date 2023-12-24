@@ -24,6 +24,10 @@ Route.get('/', async () => {
 	return 'Hello world';
 });
 
+Route.group(() => {
+	Route.post('/register', 'AuthController.register');
+}).prefix('/auth');
+
 Route.resource('questions', 'QuestionsController').apiOnly();
 
 Route.shallowResource('questions.answers', 'AnswersController').apiOnly();

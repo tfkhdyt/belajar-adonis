@@ -7,6 +7,11 @@ export default class extends BaseSchema {
 		this.schema.createTable(this.tableName, (table) => {
 			table.increments('id');
 			table
+				.integer('user_id')
+				.references('users.id')
+				.onDelete('CASCADE')
+				.notNullable();
+			table
 				.integer('question_id')
 				.references('questions.id')
 				.onDelete('CASCADE')
