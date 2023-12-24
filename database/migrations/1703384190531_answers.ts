@@ -5,12 +5,12 @@ export default class extends BaseSchema {
 
 	public async up() {
 		this.schema.createTable(this.tableName, (table) => {
-			table.text('id').primary();
+			table.increments('id');
 			table
-				.text('question_id')
+				.integer('question_id')
 				.references('questions.id')
-				.notNullable()
-				.onDelete('CASCADE');
+				.onDelete('CASCADE')
+				.notNullable();
 			table.string('content', 1000).notNullable();
 			table.boolean('is_best_answer').notNullable().defaultTo(false);
 

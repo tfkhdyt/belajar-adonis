@@ -8,11 +8,12 @@ export default class QuestionsController {
 	constructor(private questionsService: QuestionsService) {}
 
 	public async index({}: HttpContextContract) {
-		return 'listing questions';
+		return this.questionsService.index();
 	}
 
-	public async store({}: HttpContextContract) {
-		return this.questionsService.createQuestion('Gak tau');
+	public async store({ request }: HttpContextContract) {
+		const data = request.only(['content']);
+		return this.questionsService.store(data.content);
 	}
 
 	public async show({ params }: HttpContextContract) {

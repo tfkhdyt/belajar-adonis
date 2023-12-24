@@ -1,8 +1,16 @@
+import Question from 'App/Models/Question';
+
 export default class QuestionsService {
-	createQuestion(question: string) {
-		return {
-			id: 1,
-			question,
-		};
+	public async index() {
+		return Question.all();
+	}
+
+	public async store(content: string) {
+		const question = await Question.create({
+			content,
+			slug: content,
+		});
+
+		return question;
 	}
 }

@@ -4,7 +4,7 @@ import Answer from './Answer';
 
 export default class Question extends BaseModel {
 	@column({ isPrimary: true })
-	public id: string;
+	public id: number;
 
 	@column()
 	public content: string;
