@@ -22,19 +22,24 @@ export default class AuthController {
 	public async login({ request, auth }: HttpContextContract) {
 		const payload = await request.validate(LoginValidator);
 
+		console.log(payload);
+
 		const token = await auth
 			.use('api')
 			.attempt(payload.email, payload.password, {
 				expiresIn: payload.rememberMe ? '30 days' : '1 day',
 			});
 
-		return token;
+		return {
+			message: 'Login success',
+			token,
+		};
 	}
 
 	public async inspect({ auth }: HttpContextContract) {
 		const user = await auth.use('api').authenticate();
 
-		return user;
+		return { data: user };
 	}
 
 	public async logout({ auth }: HttpContextContract) {
