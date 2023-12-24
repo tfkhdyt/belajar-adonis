@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon';
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm';
+import { BaseModel, HasMany, column, hasMany } from '@ioc:Adonis/Lucid/Orm';
+import Answer from './Answer';
 
 export default class Question extends BaseModel {
 	@column({ isPrimary: true })
@@ -16,4 +17,7 @@ export default class Question extends BaseModel {
 
 	@column.dateTime({ autoCreate: true, autoUpdate: true })
 	public updatedAt: DateTime;
+
+	@hasMany(() => Answer)
+	public answers: HasMany<typeof Answer>;
 }
