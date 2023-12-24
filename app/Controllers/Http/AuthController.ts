@@ -30,4 +30,10 @@ export default class AuthController {
 
 		return token;
 	}
+
+	public async inspect({ auth }: HttpContextContract) {
+		const user = await auth.use('api').authenticate();
+
+		return user;
+	}
 }
