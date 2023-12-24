@@ -22,8 +22,6 @@ export default class AuthController {
 	public async login({ request, auth }: HttpContextContract) {
 		const payload = await request.validate(LoginValidator);
 
-		console.log(payload);
-
 		const token = await auth
 			.use('api')
 			.attempt(payload.email, payload.password, {
