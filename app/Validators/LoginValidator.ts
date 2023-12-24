@@ -1,7 +1,7 @@
 import { rules, schema, CustomMessages } from '@ioc:Adonis/Core/Validator';
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 
-export default class RegisterValidator {
+export default class LoginValidator {
 	constructor(protected ctx: HttpContextContract) {}
 
 	/*
@@ -24,27 +24,9 @@ export default class RegisterValidator {
 	 *    ```
 	 */
 	public schema = schema.create({
-		name: schema.string({ trim: true }, [
-			rules.minLength(1),
-			rules.maxLength(100),
-		]),
-		username: schema.string({ trim: true }, [
-			rules.minLength(4),
-			rules.maxLength(25),
-			rules.regex(/^[a-zA-Z0-9_-]+$/),
-			rules.unique({
-				column: 'username',
-				table: 'users',
-			}),
-		]),
-		email: schema.string({ trim: true }, [
-			rules.email(),
-			rules.unique({
-				column: 'email',
-				table: 'users',
-			}),
-		]),
-		password: schema.string([rules.minLength(8), rules.confirmed()]),
+		email: schema.string([rules.email()]),
+		password: schema.string([rules.minLength(8)]),
+		rememberMe: schema.boolean.optional(),
 	});
 
 	/**
@@ -60,25 +42,13 @@ export default class RegisterValidator {
 	 */
 	public messages: CustomMessages = {
 		required: '{{ field }} is required',
-		unique: '{{ field }} has been used',
 
 		string: '{{ field }} should be in string',
-
-		'name.minLength': '{{ field }} is required',
-		'name.maxLength':
-			'{{ field }} should not more than {{ options.maxLength }} characters',
-
-		'username.minLength':
-			'{{ field }} should not less than {{ options.minLength }} characters',
-		'username.maxLength':
-			'{{ field }} should not more than {{ options.maxLength }} characters',
-		'username.regex': '{{ field }} should not contains special characters',
+		boolean: '{{ field }} should be in boolean',
 
 		'email.email': '{{ field }} is invalid',
 
 		'password.minLength':
 			'{{ field }} should not less than {{ options.minLength }} characters',
-
-		'password_confirmation.confirmed': '{{ field }} is invalid',
 	};
 }
