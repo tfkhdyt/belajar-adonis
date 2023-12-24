@@ -1,5 +1,5 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import { inject } from '@adonisjs/fold';
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 
 import QuestionsService from 'App/Services/QuestionsService';
 

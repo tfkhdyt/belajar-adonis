@@ -1,14 +1,14 @@
 import { DateTime } from 'luxon';
+import Answer from './Answer';
+import Question from './Question';
 import Hash from '@ioc:Adonis/Core/Hash';
 import {
-	column,
-	beforeSave,
 	BaseModel,
-	hasMany,
 	HasMany,
+	beforeSave,
+	column,
+	hasMany,
 } from '@ioc:Adonis/Lucid/Orm';
-import Question from './Question';
-import Answer from './Answer';
 
 export default class User extends BaseModel {
 	@column({ isPrimary: true })

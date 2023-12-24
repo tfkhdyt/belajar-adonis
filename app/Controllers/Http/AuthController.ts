@@ -1,8 +1,8 @@
 import { inject } from '@adonisjs/fold';
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import AuthService from 'App/Services/AuthService';
 import LoginValidator from 'App/Validators/LoginValidator';
 import RegisterValidator from 'App/Validators/RegisterValidator';
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 
 @inject()
 export default class AuthController {
