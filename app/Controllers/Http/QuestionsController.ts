@@ -7,8 +7,10 @@ import QuestionsService from 'App/Services/QuestionsService';
 export default class QuestionsController {
 	constructor(private questionsService: QuestionsService) {}
 
-	public async index({}: HttpContextContract) {
-		return this.questionsService.index();
+	public async index({ request }: HttpContextContract) {
+		const { page, perPage } = request.qs();
+
+		return this.questionsService.index(page, perPage);
 	}
 
 	public async store({ request }: HttpContextContract) {
@@ -17,7 +19,7 @@ export default class QuestionsController {
 	}
 
 	public async show({ params }: HttpContextContract) {
-		return `get single question with an id of ${params.id}`;
+		return this.questionsService.show(params.id);
 	}
 
 	public async update({ params }: HttpContextContract) {
