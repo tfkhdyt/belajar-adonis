@@ -6,4 +6,8 @@ export default class UserService {
 			.whereILike('name', `%${query}%`)
 			.orWhereILike('username', `%${query}%`);
 	}
+
+	async findUserByUsername(username: string) {
+		return User.findByOrFail('username', username);
+	}
 }

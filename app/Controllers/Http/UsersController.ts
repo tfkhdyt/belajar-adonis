@@ -20,7 +20,11 @@ export default class UsersController {
 
 	public async store({}: HttpContextContract) {}
 
-	public async show({}: HttpContextContract) {}
+	public async show({ params }: HttpContextContract) {
+		const { id: username } = params;
+
+		return this.userService.findUserByUsername(username);
+	}
 
 	public async edit({}: HttpContextContract) {}
 
