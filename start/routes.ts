@@ -31,6 +31,8 @@ Route.group(() => {
 	Route.delete('/logout', 'AuthController.logout');
 }).prefix('/auth');
 
+Route.resource('users', 'UsersController').apiOnly();
+
 Route.resource('questions', 'QuestionsController').apiOnly();
 
 Route.shallowResource('questions.answers', 'AnswersController').apiOnly();
