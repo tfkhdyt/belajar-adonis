@@ -35,13 +35,10 @@ export default class AuthController {
 	}
 
 	public async inspect({ auth }: HttpContextContract) {
-		const user = await auth.use('api').authenticate();
-
-		return { data: user };
+		return { data: auth.user };
 	}
 
 	public async logout({ auth }: HttpContextContract) {
-		await auth.use('api').authenticate();
 		await auth.use('api').revoke();
 
 		return {

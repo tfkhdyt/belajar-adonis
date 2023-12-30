@@ -2,13 +2,11 @@ import { CreateUserDto } from 'App/Dto/UserDto';
 import Question from 'App/Models/Question';
 
 export default class QuestionsService {
-	public async index(page = 1, perPage = 5) {
-		return Question.query()
-			.orderBy('created_at', 'asc')
-			.paginate(page, perPage);
+	public async findAllQuestions() {
+		return Question.all();
 	}
 
-	public async store(payload: CreateUserDto) {
+	public async createQuestion(payload: CreateUserDto) {
 		const question = await Question.create({
 			content: payload.content,
 			userId: payload.userId,
@@ -17,7 +15,11 @@ export default class QuestionsService {
 		return question;
 	}
 
-	public async show(questionId: number) {
+	public async findQuestionById(questionId: number) {
 		return Question.findOrFail(questionId);
+	}
+
+	public async deleteQuestion(question: Question) {
+		await question.delete();
 	}
 }
