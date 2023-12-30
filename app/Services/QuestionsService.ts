@@ -6,6 +6,10 @@ export default class QuestionsService {
 		return Question.all();
 	}
 
+	public async findAllQuestionsByUserId(userId: number) {
+		return Question.query().where('user_id', userId);
+	}
+
 	public async createQuestion(payload: CreateUserDto) {
 		const question = await Question.create({
 			content: payload.content,

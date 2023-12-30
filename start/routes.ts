@@ -35,6 +35,9 @@ Route.group(() => {
 
 Route.resource('users', 'UsersController').apiOnly();
 
+Route.group(() => {
+	Route.get('/me', 'QuestionsController.indexByUserId');
+}).prefix('/questions');
 Route.resource('questions', 'QuestionsController').apiOnly();
 
 Route.shallowResource('questions.answers', 'AnswersController').apiOnly();

@@ -12,6 +12,12 @@ export default class QuestionsController {
 		return this.questionsService.findAllQuestions();
 	}
 
+	public async indexByUserId({ auth }: HttpContextContract) {
+		const user = await auth.use('api').authenticate();
+
+		return this.questionsService.findAllQuestionsByUserId(user.id);
+	}
+
 	public async store({ auth, request }: HttpContextContract) {
 		const user = await auth.use('api').authenticate();
 		const payload = await request.validate(CreateUserValidator);
