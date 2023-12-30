@@ -1,6 +1,6 @@
 import { inject } from '@adonisjs/fold';
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import UserService from 'App/Services/UserService';
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 
 @inject()
 export default class UsersController {

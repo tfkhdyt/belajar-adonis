@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon';
 import Answer from './Answer';
 import User from './User';
+import { slugify } from '@ioc:Adonis/Addons/LucidSlugify';
 import {
 	BaseModel,
 	BelongsTo,
@@ -9,7 +10,6 @@ import {
 	column,
 	hasMany,
 } from '@ioc:Adonis/Lucid/Orm';
-import { slugify } from '@ioc:Adonis/Addons/LucidSlugify';
 
 export default class Question extends BaseModel {
 	@column({ isPrimary: true })
