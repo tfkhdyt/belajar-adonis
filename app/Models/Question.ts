@@ -9,15 +9,25 @@ import {
 	column,
 	hasMany,
 } from '@ioc:Adonis/Lucid/Orm';
+import { slugify } from '@ioc:Adonis/Addons/LucidSlugify';
 
 export default class Question extends BaseModel {
 	@column({ isPrimary: true })
 	public id: number;
 
 	@column()
+	public userId: number;
+
+	@column()
 	public content: string;
 
 	@column()
+	@slugify({
+		strategy: 'shortId',
+		fields: ['content'],
+		allowUpdates: true,
+		maxLength: 50,
+	})
 	public slug: string;
 
 	@column.dateTime({ autoCreate: true })

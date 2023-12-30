@@ -2,6 +2,7 @@ import { inject } from '@adonisjs/fold';
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 
 import QuestionsService from 'App/Services/QuestionsService';
+import CreateUserValidator from 'App/Validators/CreateUserValidator';
 
 @inject()
 export default class QuestionsController {
@@ -13,9 +14,14 @@ export default class QuestionsController {
 		return this.questionsService.index(page, perPage);
 	}
 
-	public async store({ request }: HttpContextContract) {
-		const data = request.only(['content']);
-		return this.questionsService.store(data.content);
+	public async store({ auth, request }: HttpContextContract) {
+		const user = await auth.use('api').authenticate();
+		const payload = await request.validate(CreateUserValidator);
+
+		return this.questionsService.store({
+			content: payload.content,
+			userId: user.id,
+		});
 	}
 
 	public async show({ params }: HttpContextContract) {

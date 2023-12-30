@@ -1,3 +1,4 @@
+import { CreateUserDto } from 'App/Dto/UserDto';
 import Question from 'App/Models/Question';
 
 export default class QuestionsService {
@@ -7,10 +8,10 @@ export default class QuestionsService {
 			.paginate(page, perPage);
 	}
 
-	public async store(content: string) {
+	public async store(payload: CreateUserDto) {
 		const question = await Question.create({
-			content,
-			slug: content,
+			content: payload.content,
+			userId: payload.userId,
 		});
 
 		return question;

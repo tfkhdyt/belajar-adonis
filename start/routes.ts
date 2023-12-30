@@ -27,8 +27,10 @@ Route.get('/', async () => {
 Route.group(() => {
 	Route.post('/register', 'AuthController.register');
 	Route.post('/login', 'AuthController.login');
-	Route.get('/inspect', 'AuthController.inspect');
-	Route.delete('/logout', 'AuthController.logout');
+	Route.group(() => {
+		Route.get('/inspect', 'AuthController.inspect');
+		Route.delete('/logout', 'AuthController.logout');
+	}).middleware('auth');
 }).prefix('/auth');
 
 Route.resource('users', 'UsersController').apiOnly();
